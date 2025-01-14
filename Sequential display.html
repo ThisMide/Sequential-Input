@@ -4,10 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sequential Input Update</title>
-    <link rel="stylesheet" href="Sequencial Display.css" />
+    <!-- <link rel="stylesheet" href="Sequencial Display.css" /> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+
+      .input-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin: 0 auto 20px auto;
+        max-width: 400px;
+      }
+
+      input {
+        padding: 5px;
+        font-size: 14px;
+        width: 100px;
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
-    <h1>Sequential Input Update</h1>
+    <!-- <h1>Sequential Input Update</h1>
     <div class="input-container">
       <input type="text" id="input1" readonly />
       <input type="text" id="input2" readonly />
@@ -22,6 +59,44 @@
     </div>
     <button id="start-button">Start</button>
 
-    <script src="Sequencial Display.js"></script>
+    <script src="Sequencial Display.js"></script> -->
+    <h1>Sequential Input Update</h1>
+    <div id="input-container" class="input-container">
+      <!-- Input fields will be dynamically generated -->
+    </div>
+    <button id="start-button">Start</button>
+
+    <script>
+      // Reference to the input container
+      const inputContainer = document.getElementById("input-container");
+
+      // Create 10 input fields dynamically
+      for (let i = 0; i < 10; i++) {
+        const inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.readOnly = true; // Prevent manual edits
+        inputContainer.appendChild(inputField);
+      }
+
+      // Reference to the button
+      const startButton = document.getElementById("start-button");
+
+      // Add click event listener to the button
+      startButton.addEventListener("click", () => {
+        const inputs = document.querySelectorAll("#input-container input");
+        let delay = 0;
+
+        // Loop through each input and update it after a delay
+        inputs.forEach((input, index) => {
+          setTimeout(() => {
+            input.value = "--->";
+            input.style.fontWeight = "bold";
+          }, delay);
+
+          // Increase delay for the next input
+          delay += 1000; // 1 second interval
+        });
+      });
+    </script>
   </body>
 </html>
