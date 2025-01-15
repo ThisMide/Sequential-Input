@@ -67,36 +67,42 @@
     <button id="start-button">Start</button>
 
     <script>
-      // Reference to the input container
-      const inputContainer = document.getElementById("input-container");
+       // Reference to the input container
+       const inputContainer = document.getElementById('input-container');
 
-      // Create 10 input fields dynamically
-      for (let i = 0; i < 10; i++) {
-        const inputField = document.createElement("input");
-        inputField.type = "text";
-        inputField.readOnly = true; // Prevent manual edits
-        inputContainer.appendChild(inputField);
-      }
+// Create 10 input fields dynamically
+for (let i = 0; i < 10; i++) {
+    const inputField = document.createElement('input');
+    inputField.type = 'text';
+    inputField.readOnly = true; // Prevent manual edits
+    inputContainer.appendChild(inputField);
+}
 
-      // Reference to the button
-      const startButton = document.getElementById("start-button");
+// Reference to the button
+const startButton = document.getElementById('start-button');
 
-      // Add click event listener to the button
-      startButton.addEventListener("click", () => {
-        const inputs = document.querySelectorAll("#input-container input");
-        let delay = 0;
+// Add click event listener to the button
+startButton.addEventListener('click', () => {
+    const inputs = document.querySelectorAll('#input-container input');
+    let delay = 0;
 
-        // Loop through each input and update it after a delay
-        inputs.forEach((input, index) => {
-          setTimeout(() => {
-            input.value = "--->";
-            input.style.fontWeight = "bold";
-          }, delay);
+    // Loop through each input and update it after a delay
+    inputs.forEach((input, index) => {
+        setTimeout(() => {
+            input.value = '--->';
+            input.style.fontWeight = 'bold';
 
-          // Increase delay for the next input
-          delay += 1000; // 1 second interval
-        });
-      });
+            // Clear the input after 1 second
+            setTimeout(() => {
+                input.value = '';
+                input.style.fontWeight = 'normal';
+            }, 1000);
+        }, delay);
+
+        // Increase delay for the next input
+        delay += 1000; // 1 second interval
+    });
+});
     </script>
   </body>
 </html>
