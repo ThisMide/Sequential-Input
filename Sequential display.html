@@ -7,102 +7,115 @@
     <!-- <link rel="stylesheet" href="Sequencial Display.css" /> -->
     <style>
       body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 20px;
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 20px;
       }
 
       .input-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        justify-content: center;
-        margin: 0 auto 20px auto;
-        max-width: 400px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          margin: 0 auto;
+          max-width: 400px;
+          background-color: #eee;
+          padding: 15px;
+          border-radius: 5px;
       }
 
       input {
-        padding: 5px;
-        font-size: 14px;
-        width: 100px;
-        text-align: center;
+          width: 100px;
+          padding: 5px;
+          text-align: center;
+          background-color: #f9f9f9;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          font-size: 14px;
       }
 
       button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
       }
 
       button:hover {
-        background-color: #45a049;
+          background-color: #45a049;
       }
-    </style>
-  </head>
-  <body>
-    <!-- <h1>Sequential Input Update</h1>
-    <div class="input-container">
-      <input type="text" id="input1" readonly />
-      <input type="text" id="input2" readonly />
-      <input type="text" id="input3" readonly />
-      <input type="text" id="input4" readonly />
-      <input type="text" id="input5" readonly />
-      <input type="text" id="input6" readonly />
-      <input type="text" id="input7" readonly />
-      <input type="text" id="input8" readonly />
-      <input type="text" id="input9" readonly />
-      <input type="text" id="input10" readonly />
-    </div>
-    <button id="start-button">Start</button>
 
-    <script src="Sequencial Display.js"></script> -->
-    <h1>Sequential Input Update</h1>
-    <div id="input-container" class="input-container">
+      .gradient-blue {
+          color: blue;
+      }
+
+      .gradient-green {
+          color: green;
+      }
+
+      .gradient-lemon {
+          color: #d4d700; /* Lemon-like color */
+      }
+
+      .gradient-orange {
+          color: orange;
+      }
+
+      .gradient-red {
+          color: red;
+      }
+  </style>
+</head>
+<body>
+  <h1>Sequential Input Update</h1>
+  <div id="input-container" class="input-container">
       <!-- Input fields will be dynamically generated -->
-    </div>
-    <button id="start-button">Start</button>
+  </div>
+  <button id="start-button">Start</button>
 
-    <script>
-       // Reference to the input container
-       const inputContainer = document.getElementById('input-container');
+  <script>
+      // Reference to the input container
+      const inputContainer = document.getElementById('input-container');
 
-// Create 10 input fields dynamically
-for (let i = 0; i < 10; i++) {
-    const inputField = document.createElement('input');
-    inputField.type = 'text';
-    inputField.readOnly = true; // Prevent manual edits
-    inputContainer.appendChild(inputField);
-}
+      // Class names for gradients
+      const gradientClasses = ['gradient-blue', 'gradient-green', 'gradient-lemon', 'gradient-orange', 'gradient-red'];
 
-// Reference to the button
-const startButton = document.getElementById('start-button');
+      // Create 10 input fields dynamically
+      for (let i = 0; i < 10; i++) {
+          const inputField = document.createElement('input');
+          inputField.type = 'text';
+          inputField.readOnly = true; // Prevent manual edits
+          inputField.classList.add(gradientClasses[i % gradientClasses.length]);
+          inputContainer.appendChild(inputField);
+      }
 
-// Add click event listener to the button
-startButton.addEventListener('click', () => {
-    const inputs = document.querySelectorAll('#input-container input');
-    let delay = 0;
+      // Reference to the button
+      const startButton = document.getElementById('start-button');
 
-    // Loop through each input and update it after a delay
-    inputs.forEach((input, index) => {
-        setTimeout(() => {
-            input.value = '--->';
-            input.style.fontWeight = 'bold';
+      // Add click event listener to the button
+      startButton.addEventListener('click', () => {
+          const inputs = document.querySelectorAll('#input-container input');
+          let delay = 0;
 
-            // Clear the input after 1 second
-            setTimeout(() => {
-                input.value = '';
-                input.style.fontWeight = 'normal';
-            }, 1000);
-        }, delay);
+          // Loop through each input and update it after a delay
+          inputs.forEach((input, index) => {
+              setTimeout(() => {
+                  input.value = '--->';
+                  input.style.fontWeight = 'bold';
 
-        // Increase delay for the next input
-        delay += 1000; // 1 second interval
-    });
-});
-    </script>
-  </body>
+                  // Clear the input after 1 second
+                  setTimeout(() => {
+                      input.value = '';
+                      input.style.fontWeight = 'normal';
+                  }, 1000);
+              }, delay);
+
+              // Increase delay for the next input
+              delay += 1000; // 1 second interval
+          });
+      });
+  </script>
+</body>
 </html>
